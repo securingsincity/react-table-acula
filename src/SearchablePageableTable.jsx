@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 var PageableTable = require('./PageableTable.jsx');
-var FilterSearch = require('./FilterSearch.jsx');
+var Search = require('./Search.jsx');
 
 module.exports = React.createClass({
+  displayName: 'SearchablePageableTable',
   propTypes: {
     nextPageCallback: React.PropTypes.func.isRequired,
     previousPageCallback: React.PropTypes.func.isRequired,
@@ -21,26 +22,13 @@ module.exports = React.createClass({
     var maximumPages = this.props.maximumPages  ? this.props.maximumPages : 10;
     return(
       <div>
-        <FilterSearch
+        <Search
           searchCallback={this.props.searchCallback}
           searchResetCallback={this.props.searchResetCallback}
         />
         <PageableTable
-          striped={this.props.striped}
-          bordered={this.props.bordered}
-          condensed={this.props.condensed}
-          hover={this.props.hover}
-          collection={this.props.collection}
-          columns={this.props.columns}
-          sortingCallback={this.props.sortingCallback}
-          nextPageCallback={this.props.nextPageCallback}
-          previousPageCallback={this.props.previousPageCallback}
-          pageCallback={this.props.pageCallback}
-          totalPages={this.props.totalPages}
-          currentPage={this.props.currentPage}
+          {...this.props}
           maximumPages={maximumPages}
-          sortKey={this.props.sortKey}
-          sortOrder={this.props.sortOrder}
         />
      </div>);
   }

@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 
 module.exports = React.createClass({
+  displayName: 'Table',
   propTypes: {
     collection: React.PropTypes.array.isRequired,
     columns: React.PropTypes.object.isRequired,

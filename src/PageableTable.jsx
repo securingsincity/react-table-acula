@@ -5,6 +5,7 @@ var Pagination = require('./Pagination.jsx');
 
 
 module.exports = React.createClass({
+  displayName: 'PageableTable',
   propTypes: {
     nextPageCallback: React.PropTypes.func.isRequired,
     previousPageCallback: React.PropTypes.func.isRequired,
@@ -23,24 +24,12 @@ module.exports = React.createClass({
     return(
       <div>
         <Table
-          striped={this.props.striped}
-          bordered={this.props.bordered}
-          condensed={this.props.condensed}
-          hover={this.props.hover}
-          collection={this.props.collection}
-          columns={this.props.columns}
-          sortingCallback={this.props.sortingCallback}
-          sortKey={this.props.sortKey}
-          sortOrder={this.props.sortOrder}
+          {...this.props}
 
           />
         <Pagination
-          nextPageCallback={this.props.nextPageCallback}
-          previousPageCallback={this.props.previousPageCallback}
-          pageCallback={this.props.pageCallback}
-          totalPages={this.props.totalPages}
-          currentPage={this.props.currentPage}
-          maximumPages={maximumPages}
+        {...this.props}
+        maximumPages={maximumPages}
         />
      </div>);
   }

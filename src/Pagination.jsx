@@ -3,7 +3,7 @@ var React = require('react/addons');
 
 
 module.exports = React.createClass({
-
+  displayName: 'Pagination',
   propTypes: {
     nextPageCallback: React.PropTypes.func.isRequired,
     previousPageCallback: React.PropTypes.func.isRequired,

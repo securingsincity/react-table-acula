@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-var Table = require('../src/FilterablePageableTable.jsx');
+var Table = require('../src/SearchablePageableTable.jsx');
 $ = jQuery = global.$  = require('jquery');
 global.bootstrap = require('../bower_components/bootstrap/dist/js/bootstrap');
 var Backbone = require('backbone');
@@ -85,7 +85,7 @@ function makeid() {
 }
 
 for(var i = 0; i < 1000; i++) {
-  var a = new testModel({first_name: makeid(), last_name: makeid()});
+  var a = new testModel({id:i+1,first_name: makeid(), last_name: makeid()});
   coll.add(a);
 }
 
