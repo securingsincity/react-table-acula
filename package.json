@@ -1,0 +1,45 @@
+{
+  "name": "react-tablacula",
+  "version": "0.5.0",
+  "description": "A react component for awesome tables",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Hrisho",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-react": "^2.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "backbone": "^1.1.2",
+    "backbone.paginator": "^2.0.2",
+    "jquery": "^2.1.1"
+  },
+  "keywords": [
+    "table",
+    "datatables",
+    "react-component",
+    "react",
+    "brace"
+  ],
+  "browserify": {
+    "transform": [
+      [
+        "reactify"
+      ]
+    ]
+  },
+  "dependencies": {
+    "jest-cli": "^0.4.0",
+    "lodash": "^2.4.1",
+    "react": "^0.12.1",
+    "reactify": "^0.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/maxwellhealth/react-tablacula.git"
+  }
+}

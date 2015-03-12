@@ -1,0 +1,37 @@
+{
+  "node": true, // Enable globals available when code is running inside of the NodeJS runtime environment.
+  "browser": true, // Standard browser globals e.g. `window`, `document`.
+  "esnext": true, // Allow ES.next specific features such as `const` and `let`.
+  "bitwise": false, // Prohibit bitwise operators (&, |, ^, etc.).
+  "camelcase": false, // Permit only camelcase for `var` and `object indexes`.
+  "curly": false, // Require {} for every new block or scope.
+  "eqeqeq": true, // Require triple equals i.e. `===`.
+  "latedef": true, // Prohibit variable use before definition.
+  "newcap": false, // Require capitalization of all constructor functions e.g. `new F()`. -- Messenger warnings are annoying
+  "noarg": true, // Prohibit use of `arguments.caller` and `arguments.callee`.
+  "regexp": true, // Prohibit `.` and `[^...]` in regular expressions.
+  "undef": true, // Require all non-global variables be declared before they are used.
+  "unused": true, // Warn unused variables.
+  "evil" : true,
+  "es3": true,
+  "trailing": true, // Prohibit trailing whitespaces.
+  "predef": [ // Extra globals.
+    "define",
+    "require",
+    "exports",
+    "module",
+    "describe",
+    "before",
+    "beforeEach",
+    "after",
+    "afterEach",
+    "it",
+    "inject",
+    "expect",
+    "ga",
+    "Messenger"
+  ],
+  "indent": 2, // Specify indentation spacing
+  "devel": true, // Allow development statements e.g. `console.log();`.
+  "noempty": true // Prohibit use of empty blocks.
+}
