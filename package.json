@@ -1,5 +1,5 @@
 {
-  "name": "react-tablacula",
+  "name": "react-table-acula",
   "version": "0.5.0",
   "description": "A react component for awesome tables",
   "main": "index.js",
@@ -40,6 +40,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/maxwellhealth/react-tablacula.git"
+    "url": "http://github.com/maxwellhealth/react-table-acula.git"
   }
 }

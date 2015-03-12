@@ -1,4 +1,4 @@
-#React-tablacula
+#React-table-acula
 
 ##Components:
 * Paginator
