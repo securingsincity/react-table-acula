@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 var _ = require('lodash');
-
+var dot = require('dot-component');
 
 module.exports = React.createClass({
   displayName: 'Table',
@@ -65,7 +65,7 @@ module.exports = React.createClass({
            );
          } else if(column.display === 'string') {
             columns.push(
-              <td>{ model[column.field] }</td>
+              <td>{ dot.get(model,column.field) }</td>
             );
          } else if (column.display === 'button') {
             var icon;

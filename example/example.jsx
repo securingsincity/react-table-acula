@@ -85,7 +85,15 @@ function makeid() {
 }
 
 for(var i = 0; i < 1000; i++) {
-  var a = new testModel({id:i+1,first_name: makeid(), last_name: makeid()});
+  var a = new testModel({
+    id:i+1,
+    first_name: makeid(),
+    last_name: makeid(),
+    address: {
+      state: 'New York',
+      city: makeid()
+    }
+  });
   coll.add(a);
 }
 
@@ -104,6 +112,14 @@ var columns = {
     field: 'last_name',
     display: 'string',
     sortable: true
+  },
+  'City' : {
+    field: 'address.city',
+    display: 'string'
+  },
+  'State' : {
+    field: 'address.state',
+    display: 'string'
   },
   'Edit' : {
     action: 'edit',
