@@ -50,6 +50,29 @@ var columns = {
     field: 'messages',
     display: 'list'
   },
+  'Custom' : {
+    field: 'address.state',
+    display: 'custom',
+    format: function(field) {
+      return field.toLowerCase();
+    }
+  },
+  'RCL' : {
+    display: 'react',
+    component:  React.createClass({
+        render: function() {
+          return (
+            <div className="class">
+              <ol>
+                <li>{this.props.model.first_name}</li>
+                <li>{this.props.model.last_name}</li>
+                <li>{this.props.model.address.city}</li>
+              </ol>
+            </div>
+          );
+        }
+      });
+  },
   'Edit' : {
     action: 'edit',
     display: 'button',
@@ -64,10 +87,12 @@ var columns = {
 };
 ```
 * The key of the object is the displayed header name
-* Strings just get displayed as text. Any display work should be done prior to passing in the collection ie, formatting dates.
-* Lists will loop over an array and display the value as a string in an unordered list
-* Buttons contain an action which add that field as a class assigned to that cell. Additional classes can be added through the "classes" field. Additionally you can add a glyphicon.
-* Strings and Lists can use dot access to access a nested object like `address.city` for example.
+* Strings  - display a field as text.
+* Lists - will loop over an array and display the value as a string in an unordered list
+* Buttons - Display a button. contain an action which add that field as a class assigned to that cell. Additional classes can be added through the "classes" field. Additionally you can add a glyphicon.
+* Custom - pass in a function that takes the field as a parameter and then you would format that column as needed. Great for formatting dates.
+* React - Pass in a custom react component. The row is passed in as a prop called model into this custom react component.
+* Strings, Custom and Lists can use dot access to access a nested object like `address.city` for example.
 
 
 ##Callbacks

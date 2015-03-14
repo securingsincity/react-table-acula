@@ -21,6 +21,17 @@ gulp.task('example',function() {
 });
 
 
+gulp.task('backbone',function() {
+  return browserify({
+    entries: ['./example/backbone-example.jsx'],
+    debug: true
+  })
+  .bundle()
+  .pipe(source('backbone-example.js'))
+  .pipe(gulp.dest('build'));
+});
+
+
 gulp.task('jshint',function() {
   gulp.src('src/**/**.jsx').pipe(react()).pipe(jshint())
   .pipe(jshint.reporter('default'));

@@ -73,6 +73,13 @@ module.exports = React.createClass({
             columns.push(
               <td key={columnName}>{ dot.get(model,column.field) }</td>
             );
+         } else if(column.display === 'custom') {
+            if (column.format) {
+              columns.push(<td key={columnName}>{column.format(dot.get(model,column.field))}</td>);
+            }
+         } else if(column.display === 'react') {
+            var CustomComponent = column.component;
+            columns.push(<td key={columnName}><CustomComponent model={model} /></td>);
          } else if(column.display === 'list') {
             var field = dot.get(model,column.field);
             var list = _.map(field, function(subField,index) {

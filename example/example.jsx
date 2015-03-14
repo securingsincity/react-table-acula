@@ -8,6 +8,7 @@ require('backbone.paginator');
 var _ = require('lodash');
 
 
+
 var testModel = Backbone.Model.extend();
 var testCollection = Backbone.PageableCollection.extend({
   model : testModel,
@@ -92,11 +93,15 @@ for(var i = 0; i < 1000; i++) {
     address: {
       state: 'New York',
       city: makeid()
-    }
+    },
+    messages: [
+      'foo',
+      'bar',
+      'baz'
+    ]
   });
   coll.add(a);
 }
-
 var columns = {
   'ID': {
     field: 'id',
@@ -121,6 +126,35 @@ var columns = {
     field: 'address.state',
     display: 'string'
   },
+   'Messages' : {
+    field: 'messages',
+    display: 'list'
+  },
+  'Custom' : {
+    field: 'address.state',
+    display: 'custom',
+    format: function(field) {
+      return field.toLowerCase();
+    }
+  },
+  'RCL' : {
+    display: 'react',
+    component:  React.createClass({
+        clicker: function() {
+          console.log(this.props.model.id);
+        },
+        render: function() {
+          return (
+            <div className="class" ref="clicker">
+              <ol>
+                <span className="badge"  onClick={this.clicker}>{this.props.model.first_name}</span>
+                <span className="badge"  onClick={this.clicker}>{this.props.model.last_name}</span>
+              </ol>
+            </div>
+          );
+        }
+      })
+  },
   'Edit' : {
     action: 'edit',
     display: 'button',
@@ -133,26 +167,30 @@ var columns = {
     icon: 'glyphicon-remove'
   }
 };
+
 coll.getFirstPage();
+
+
 var render = function() {
   if (!coll.state.sortKey) {
     coll.setSorting('last_name', -1);
     coll.fullCollection.sort();
   }
-  React.render(<Table striped hover condensed
-  columns={columns}
-  collection={coll.toJSON()}
-  sortingCallback={sort}
-  sortKey={coll.state.sortKey}
-  sortOrder={coll.state.order}
-  nextPageCallback={nextPage}
-  pageCallback={page}
-  previousPageCallback={previousPage}
-  totalPages={coll.state.totalPages}
-  currentPage={coll.state.currentPage}
-  searchCallback={searchCallback}
-  searchResetCallback={searchResetCallback}
-  />, document.getElementById("container"));
+  React.render(
+    <Table striped hover condensed
+      columns={columns}
+      collection={coll.toJSON()}
+      sortingCallback={sort}
+      sortKey={coll.state.sortKey}
+      sortOrder={coll.state.order}
+      nextPageCallback={nextPage}
+      pageCallback={page}
+      previousPageCallback={previousPage}
+      totalPages={coll.state.totalPages}
+      currentPage={coll.state.currentPage}
+      searchCallback={searchCallback}
+      searchResetCallback={searchResetCallback}
+    />, document.getElementById("container"));
 
 };
 render(coll);
