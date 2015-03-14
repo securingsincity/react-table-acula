@@ -26,10 +26,7 @@ module.exports = React.createClass({
           searchCallback={this.props.searchCallback}
           searchResetCallback={this.props.searchResetCallback}
         />
-        <PageableTable
-          {...this.props}
-          maximumPages={maximumPages}
-        />
+        <PageableTable {...this.props} maximumPages={maximumPages}/>
      </div>);
   }
 });

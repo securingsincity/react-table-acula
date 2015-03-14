@@ -23,14 +23,8 @@ module.exports = React.createClass({
     var maximumPages = this.props.maximumPages  ? this.props.maximumPages : 10;
     return(
       <div>
-        <Table
-          {...this.props}
-
-          />
-        <Pagination
-        {...this.props}
-        maximumPages={maximumPages}
-        />
+        <Table {...this.props} />
+        <Pagination {...this.props} maximumPages={maximumPages}/>
      </div>);
   }
 });

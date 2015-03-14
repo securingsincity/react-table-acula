@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
 var Table = require('../src/SearchablePageableTable.jsx');
-$ = jQuery = global.$  = require('jquery');
+var $  = require('jquery');
+global.$ = $;
 global.bootstrap = require('../bower_components/bootstrap/dist/js/bootstrap');
 var Backbone = require('backbone');
 require('backbone.paginator');
@@ -141,7 +142,6 @@ var render = function() {
   }
   React.render(<Table striped hover condensed
   columns={columns}
-  collection={coll.toJSON()}
   sortingCallback={sort}
   sortKey={coll.state.sortKey}
   sortOrder={coll.state.order}
