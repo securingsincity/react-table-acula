@@ -1,5 +1,7 @@
 #React-table-acula
 
+[React-Table-Acula Github Page](http://maxwellhealth.github.io/react-table-acula)
+
 ##Examples
 
 [Complex Table](http://maxwellhealth.github.io/react-table-acula/example/example.html) - The configuration for this table is listed below it has custom formatters, search, paging, sorting and custom react components.
