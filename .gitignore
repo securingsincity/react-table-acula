@@ -1,7 +1,5 @@
 node_modules
-bower_components
 coverage
 lib-cov
 logs
 .log
-build
