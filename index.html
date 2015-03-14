@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>React-table-acula by maxwellhealth</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>React-table-acula</h1>
+        <p>A series of react components for tables</p>
+
+        <p class="view"><a href="https://github.com/maxwellhealth/react-table-acula">View the Project on GitHub <small>maxwellhealth/react-table-acula</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/maxwellhealth/react-table-acula/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/maxwellhealth/react-table-acula/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/maxwellhealth/react-table-acula">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="react-table-acula" class="anchor" href="#react-table-acula" aria-hidden="true"><span class="octicon octicon-link"></span></a>React-table-acula</h1>
+
+<h2>
+<a id="components" class="anchor" href="#components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Components:</h2>
+
+<ul>
+<li><a href="#table">Table</a></li>
+<li><a href="#pagination">Pagination</a></li>
+<li><a href="#pageabletable">PageableTable</a></li>
+<li><a href="#searchablepageabletable">SearchablePageableTable</a></li>
+</ul>
+
+<p>A complete rethink of <a href="https://github.com/securingsincity/backbone-react-ui">Backbone-React-UI</a></p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<p><code>npm install react-table-acula --save</code></p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>The table components are driven by a collection and a configuration.</p>
+
+<h2>
+<a id="config" class="anchor" href="#config" aria-hidden="true"><span class="octicon octicon-link"></span></a>Config</h2>
+
+<p>A sample config would look like this:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> columns <span class="pl-k">=</span> {
+  <span class="pl-s1"><span class="pl-pds">'</span>ID<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+    sortable<span class="pl-k">:</span> <span class="pl-c1">true</span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>First Name<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span><span class="pl-s1"><span class="pl-pds">'</span>first_name<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+    sortable<span class="pl-k">:</span> <span class="pl-c1">true</span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>Last Name<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>last_name<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>,
+    sortable<span class="pl-k">:</span> <span class="pl-c1">true</span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>City<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address.city<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>State<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address.state<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>string<span class="pl-pds">'</span></span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>Messages<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>messages<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>list<span class="pl-pds">'</span></span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>Custom<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    field<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>address.state<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>custom<span class="pl-pds">'</span></span>,
+    <span class="pl-en">format</span>: <span class="pl-st">function</span>(<span class="pl-vpf">field</span>) {
+      <span class="pl-k">return</span> field.<span class="pl-s3">toLowerCase</span>();
+    }
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>RCL<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>react<span class="pl-pds">'</span></span>,
+    component<span class="pl-k">:</span>  React.createClass({
+        <span class="pl-en">render</span>: <span class="pl-st">function</span>() {
+          <span class="pl-k">return</span> (
+            <span class="pl-k">&lt;</span>div className<span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>class<span class="pl-pds">"</span></span><span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>ol<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>li<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.props.model.first_name}<span class="pl-k">&lt;</span>/li<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>li<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.props.model.last_name}<span class="pl-k">&lt;</span>/li<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>li<span class="pl-k">&gt;</span>{<span class="pl-v">this</span>.props.model.address.city}<span class="pl-k">&lt;</span>/li<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>/ol<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+          );
+        }
+      });
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>Edit<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    action<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>edit<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>button<span class="pl-pds">'</span></span>,
+    classes<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>btn-success<span class="pl-pds">'</span></span>
+  },
+  <span class="pl-s1"><span class="pl-pds">'</span>Remove<span class="pl-pds">'</span></span> <span class="pl-k">:</span> {
+    action<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>delete<span class="pl-pds">'</span></span>,
+    display<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>button<span class="pl-pds">'</span></span>,
+    classes<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>btn-warning<span class="pl-pds">'</span></span>,
+    icon<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>glyphicon-remove<span class="pl-pds">'</span></span>
+  }
+};</pre></div>
+
+<ul>
+<li>The key of the object is the displayed header name</li>
+<li>Strings  - display a field as text.</li>
+<li>Lists - will loop over an array and display the value as a string in an unordered list</li>
+<li>Buttons - Display a button. contain an action which add that field as a class assigned to that cell. Additional classes can be added through the "classes" field. Additionally you can add a glyphicon.</li>
+<li>Custom - pass in a function that takes the field as a parameter and then you would format that column as needed. Great for formatting dates.</li>
+<li>React - Pass in a custom react component. The row is passed in as a prop called model into this custom react component.</li>
+<li>Strings, Custom and Lists can use dot access to access a nested object like <code>address.city</code> for example.</li>
+</ul>
+
+<h2>
+<a id="callbacks" class="anchor" href="#callbacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Callbacks</h2>
+
+<p>Callbacks are a necessary evil to making this all work.</p>
+
+<p>All of them are required in this case. But it allows for some flexibility in this library.</p>
+
+<p>As you implment you decide how you want search, or pagination work, server or client. Just pass the new values into the props of the react component and it'll rerender.</p>
+
+<h1>
+<a id="props" class="anchor" href="#props" aria-hidden="true"><span class="octicon octicon-link"></span></a>Props</h1>
+
+<h2>
+<a id="table" class="anchor" href="#table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table</h2>
+
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collection</td>
+<td>array</td>
+<td>true</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>object</td>
+<td>true</td>
+</tr>
+<tr>
+<td>sortingCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>number</td>
+<td>false</td>
+</tr>
+<tr>
+<td>sortKey</td>
+<td>string</td>
+<td>false</td>
+</tr>
+<tr>
+<td>striped</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>bordered</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>condensed</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>hover</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="pagination" class="anchor" href="#pagination" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pagination</h2>
+
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalPages</td>
+<td>number</td>
+<td>true</td>
+</tr>
+<tr>
+<td>currentPage</td>
+<td>number</td>
+<td>true</td>
+</tr>
+<tr>
+<td>nextPageCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+<tr>
+<td>pageCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+<tr>
+<td>nextPageCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+<tr>
+<td>maximumPages</td>
+<td>number</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="pageabletable" class="anchor" href="#pageabletable" aria-hidden="true"><span class="octicon octicon-link"></span></a>PageableTable</h2>
+
+<p>Contains all of the props of the paginator and the table</p>
+
+<h2>
+<a id="searchablepageabletable" class="anchor" href="#searchablepageabletable" aria-hidden="true"><span class="octicon octicon-link"></span></a>SearchablePageableTable</h2>
+
+<p>Contains all of the props of the paginator and the table as well as the following:</p>
+
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>searchCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+<tr>
+<td>searchResetCallback</td>
+<td>function</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/maxwellhealth">maxwellhealth</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
