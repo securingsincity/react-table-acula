@@ -23,7 +23,8 @@
     "datatables",
     "react-component",
     "react",
-    "brace"
+    "filter table",
+    "pagination"
   ],
   "browserify": {
     "transform": [
