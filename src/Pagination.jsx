@@ -62,27 +62,27 @@ module.exports = React.createClass({
     if(this.props.maximumPages > this.props.totalPages) {
       for(page = 1; page <= this.props.totalPages; page++){
         if(page !== this.props.currentPage) {
-          pages.push(<li><a href="javascript: void 0;" onClick={this.changePage} data-page={page}>{page}</a></li>);
+          pages.push(<li key={page}><a href="javascript: void 0;" onClick={this.changePage} data-page={page}>{page}</a></li>);
         } else {
-          pages.push(<li className="active"><a href="javascript: void 0;" >{page}</a></li>);
+          pages.push(<li key={page} className="active"><a href="javascript: void 0;" >{page}</a></li>);
 
         }
       }
     } else {
       if(this.props.currentPage >= 4) {
-        pages.push(<li><a href="javascript: void 0;" onClick={this.changePage} data-page={1} >{1}</a></li>);
-        pages.push(<li className="disabled"><a href="javascript: void 0;">&hellip;</a></li>);
+        pages.push(<li key={1}><a href="javascript: void 0;" onClick={this.changePage} data-page={1} >{1}</a></li>);
+        pages.push(<li  key="leftellips" className="disabled"><a href="javascript: void 0;">&hellip;</a></li>);
 
       }
       for(page = starterPage; page <= this.props.totalPages; ++page) {
         if((starterPage + this.props.maximumPages) < page && (page + this.props.maximumPages) < this.props.totalPages) {
-          pages.push(<li className="disabled"><a href="javascript: void 0;">&hellip;</a></li>);
-          pages.push(<li><a href="javascript: void 0;" onClick={this.changePage} data-page={this.props.totalPages} className="">{this.props.totalPages}</a></li>);
+          pages.push(<li key={'ellips'} className="disabled"><a href="javascript: void 0;">&hellip;</a></li>);
+          pages.push(<li key={'totalpages'}><a href="javascript: void 0;" onClick={this.changePage} data-page={this.props.totalPages} className="">{this.props.totalPages}</a></li>);
           break;
         } else if (page !== this.props.currentPage){
-          pages.push(<li><a href="javascript: void 0;" onClick={this.changePage} data-page={page} className="">{page}</a></li>);
+          pages.push(<li key={page}><a href="javascript: void 0;" onClick={this.changePage} data-page={page} className="">{page}</a></li>);
         } else {
-          pages.push(<li className="active"><a href="javascript: void 0;" >{page}</a></li>);
+          pages.push(<li key={page} className="active"><a href="javascript: void 0;" >{page}</a></li>);
 
         }
       }
