@@ -1,5 +1,9 @@
 #React-table-acula
 
+[![Build Status](https://travis-ci.org/maxwellhealth/react-table-acula.svg?branch=master)](https://travis-ci.org/maxwellhealth/react-table-acula)
+
+[![Coverage Status](https://coveralls.io/repos/maxwellhealth/react-table-acula/badge.svg)](https://coveralls.io/r/maxwellhealth/react-table-acula)
+
 [React-Table-Acula Github Page](http://maxwellhealth.github.io/react-table-acula)
 
 ##Examples
