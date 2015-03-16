@@ -4,19 +4,38 @@
   "description": "A react component for awesome tables",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/jest-cli/bin/jest.js"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageOnlyFrom": {
+      "src/Table.jsx": true,
+      "src/PageableTable.jsx": true,
+      "src/SearchablePageableTable.jsx": true,
+      "src/Pagination.jsx": true,
+      "src/Search.jsx": true
+    },
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
   },
   "author": "James Hrisho",
   "license": "MIT",
   "devDependencies": {
+    "backbone": "^1.1.2",
+    "backbone.paginator": "^2.0.2",
     "browserify": "^6.3.3",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
     "gulp-react": "^2.0.0",
-    "vinyl-source-stream": "^1.0.0",
-    "backbone": "^1.1.2",
-    "backbone.paginator": "^2.0.2",
-    "jquery": "^2.1.1"
+    "jquery": "^2.1.1",
+    "react-tools": "^0.13.0",
+    "vinyl-source-stream": "^1.0.0"
   },
   "keywords": [
     "table",
@@ -34,6 +53,7 @@
     ]
   },
   "dependencies": {
+    "classnames": "^1.1.4",
     "dot-component": "^0.1.1",
     "jest-cli": "^0.4.0",
     "lodash": "^2.4.1",

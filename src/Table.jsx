@@ -2,6 +2,7 @@
 var React = require('react/addons');
 var _ = require('lodash');
 var dot = require('dot-component');
+var classNames = require('classnames');
 
 module.exports = React.createClass({
   displayName: 'Table',
@@ -25,12 +26,11 @@ module.exports = React.createClass({
     if(!this.props.sortOrder) {
       sortOrder = 1;
     }
-    this.props.sortingCallback(e.currentTarget.dataset.field, (sortOrder * -1));
+    this.props.sortingCallback(e.currentTarget.getAttribute('data-field'), (sortOrder * -1));
   },
   render: function() {
     var self = this;
-    var cx = React.addons.classSet;
-    var classes = cx({
+    var classes = classNames({
       'table': true,
       'dataTable': true,
       'table-striped': this.props.striped,
@@ -50,7 +50,7 @@ module.exports = React.createClass({
         } else if (column.field === self.props.sortKey){
           classesObj.sorting_asc = true;
         }
-        var classesHead = cx(classesObj);
+        var classesHead = classNames(classesObj);
         head.push(
          <th  key={columnName} className={classesHead} onClick={self.sort} data-field={column.field}> {columnName}</th>
        );
@@ -65,22 +65,18 @@ module.exports = React.createClass({
     _.each(this.props.collection,function(model,index) {
        var columns = [];
        _.each(self.props.columns, function(column,columnName) {
-         if(column.field === 'id') {
-           columns.push(
-            <td key={columnName}>{model.id}</td>
-           );
-         } else if(column.display === 'string') {
+         if (column.display === 'string') {
             columns.push(
               <td key={columnName}>{ dot.get(model,column.field) }</td>
             );
-         } else if(column.display === 'custom') {
+         } else if (column.display === 'custom') {
             if (column.format) {
               columns.push(<td key={columnName}>{column.format(dot.get(model,column.field))}</td>);
             }
-         } else if(column.display === 'react') {
+         } else if (column.display === 'react') {
             var CustomComponent = column.component;
             columns.push(<td key={columnName}><CustomComponent model={model} /></td>);
-         } else if(column.display === 'list') {
+         } else if (column.display === 'list') {
             var field = dot.get(model,column.field);
             var list = _.map(field, function(subField,index) {
               return  (<li key={index}>{subField}</li>);

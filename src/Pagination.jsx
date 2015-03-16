@@ -32,7 +32,7 @@ module.exports = React.createClass({
    */
   changePage: function(e) {
     e.preventDefault();
-    var pageNumber = +e.currentTarget.dataset.page;
+    var pageNumber = +e.currentTarget.getAttribute('data-field');
     this.props.pageCallback(pageNumber);
   },
   /**
@@ -41,7 +41,7 @@ module.exports = React.createClass({
    */
   renderNext: function() {
     if(this.props.currentPage < this.props.totalPages){
-      return (<li><a href="javascript: void(0);" onClick={this.nextPage}>&raquo;</a></li>);
+      return (<li><a href="javascript: void(0);" ref="nextPage" onClick={this.nextPage}>&raquo;</a></li>);
     } else {
       return (<li className="disabled"><a href="javascript: void 0;">&raquo;</a></li>);
     }
@@ -96,7 +96,7 @@ module.exports = React.createClass({
    */
   renderPrevious : function() {
     if(this.props.currentPage > 1){
-      return (<li className=""><a href="javascript: void 0;" onClick={this.previousPage}>&laquo;</a></li>);
+      return (<li className=""><a href="javascript: void 0;"  ref="prevPage" onClick={this.previousPage}>&laquo;</a></li>);
     }else {
       return (<li className="disabled"><a href="javascript: void 0;" >&laquo;</a></li>);
     }

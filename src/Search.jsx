@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 var React = require('react/addons');
-
+var classNames = require('classnames');
 module.exports = React.createClass({
   displayName: 'Search',
   getInitialState: function() {
@@ -37,8 +37,7 @@ module.exports = React.createClass({
     });
   },
   render: function () {
-    var cx = React.addons.classSet;
-    var classes = cx({
+    var classes = classNames({
       'form-group': true,
       'col-sm-4': true,
       'pull-right': true
@@ -54,7 +53,7 @@ module.exports = React.createClass({
             <input type="search" className="form-control " ref="theInput" defaultValue={this.state.userInput}
               placeholder="Search" onChange={this.search}/>
           </div>
-          <button className="btn btn-info col-sm-2" onClick={this.clearSearch}><span className='glyphicon glyphicon-remove' /></button>
+          <button className="btn btn-info col-sm-2" ref="clearInput" onClick={this.clearSearch}><span className='glyphicon glyphicon-remove' /></button>
         </div>
       </div>
     );
