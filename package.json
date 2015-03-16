@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "classnames": "^1.1.4",
+    "coveralls": "^2.11.2",
     "dot-component": "^0.1.1",
     "jest-cli": "^0.4.0",
     "lodash": "^2.4.1",
