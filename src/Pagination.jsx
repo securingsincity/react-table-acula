@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react/addons');
 
 
@@ -32,7 +31,7 @@ module.exports = React.createClass({
    */
   changePage: function(e) {
     e.preventDefault();
-    var pageNumber = +e.currentTarget.getAttribute('data-field');
+    var pageNumber = +e.currentTarget.getAttribute('data-page');
     this.props.pageCallback(pageNumber);
   },
   /**
