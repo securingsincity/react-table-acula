@@ -1,6 +1,6 @@
 {
   "name": "react-table-acula",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "A react component for awesome tables",
   "main": "index.js",
   "scripts": {
