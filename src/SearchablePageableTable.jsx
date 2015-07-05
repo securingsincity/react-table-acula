@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 var React = require('react/addons');
 var PageableTable = require('./PageableTable.jsx');
 var Search = require('./Search.jsx');
