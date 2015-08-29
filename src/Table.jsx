@@ -22,7 +22,7 @@ module.exports = React.createClass({
    */
   sort: function(e) {
     var sortOrder = this.props.sortOrder;
-    if(!this.props.sortOrder) {
+    if (!this.props.sortOrder) {
       sortOrder = 1;
     }
     this.props.sortingCallback(e.currentTarget.getAttribute('data-field'), (sortOrder * -1));
@@ -39,20 +39,20 @@ module.exports = React.createClass({
     });
     var head = [];
     var rows = [];
-    _.each(this.props.columns, function(column,columnName) {
-      if(column.sortable) {
+    _.each(this.props.columns, function(column, columnName) {
+      if (column.sortable) {
         var classesObj = {
-          'sorting' : true
+          'sorting': true
         };
-        if(column.field === self.props.sortKey && self.props.sortOrder === 1) {
+        if (column.field === self.props.sortKey && self.props.sortOrder === 1) {
           classesObj.sorting_desc = true;
-        } else if (column.field === self.props.sortKey){
+        } else if (column.field === self.props.sortKey) {
           classesObj.sorting_asc = true;
         }
         var classesHead = classNames(classesObj);
         head.push(
-         <th  key={columnName} className={classesHead} onClick={self.sort} data-field={column.field}> {columnName}</th>
-       );
+          <th  key={columnName} className={classesHead} onClick={self.sort} data-field={column.field}> {columnName}</th>
+        );
       } else {
         head.push(
           <th key={columnName}>{columnName}</th>
@@ -61,40 +61,45 @@ module.exports = React.createClass({
 
     });
 
-    _.each(this.props.collection,function(model,index) {
-       var columns = [];
-       _.each(self.props.columns, function(column,columnName) {
-         if (column.display === 'string') {
-            columns.push(
-              <td key={columnName}>{ dot.get(model,column.field) }</td>
-            );
-         } else if (column.display === 'custom') {
-            if (column.format) {
-              columns.push(<td key={columnName}>{column.format(dot.get(model,column.field))}</td>);
+    _.each(this.props.collection, function(model, index) {
+      var columns = [];
+      _.each(self.props.columns, function(column, columnName) {
+        if (column.display === 'string') {
+          columns.push(
+            <td key={columnName}>{ dot.get(model, column.field) }</td>
+          );
+        } else if (column.display === 'custom') {
+          if (column.format) {
+            var createMarkup = function() {
+              return {
+                __html: column.format(dot.get(model, column.field), model)
+              }
             }
-         } else if (column.display === 'react') {
-            var CustomComponent = column.component;
-            columns.push(<td key={columnName}><CustomComponent model={model} /></td>);
-         } else if (column.display === 'list') {
-            var field = dot.get(model,column.field);
-            var list = _.map(field, function(subField,index) {
-              return  (<li key={index}>{subField}</li>);
-            });
-            columns.push(<td key={columnName}><ul>{list}</ul></td>);
-         } else if (column.display === 'button') {
-            var icon;
-            if(column.icon) {
-              icon = (<span className={"glyphicon "+column.icon}/>);
-            }
-            columns.push(
-              <td key={columnName}><button className={'btn btn-sm '+column.classes + ' ' + column.action} data-id={model.id}>{icon} {columnName}</button></td>
-            );
-         }
+            columns.push(<td key={columnName}  dangerouslySetInnerHTML={createMarkup()} />);
+          }
+        } else if (column.display === 'react') {
+          var CustomComponent = column.component;
+          columns.push(<td key={columnName}><CustomComponent model={model} /></td>);
+        } else if (column.display === 'list') {
+          var field = dot.get(model, column.field);
+          var list = _.map(field, function(subField, index) {
+            return (<li key={index}>{subField}</li>);
+          });
+          columns.push(<td key={columnName}><ul>{list}</ul></td>);
+        } else if (column.display === 'button') {
+          var icon;
+          if (column.icon) {
+            icon = (<span className={"glyphicon " + column.icon}/>);
+          }
+          columns.push(
+            <td key={columnName}><button className={'btn btn-sm ' + column.classes + ' ' + column.action} data-id={model.id}>{icon} {columnName}</button></td>
+          );
+        }
 
-       });
-       rows.push(
-         <tr key={index}>{columns}</tr>
-       );
+      });
+      rows.push(
+        <tr key={index}>{columns}</tr>
+      );
     });
     return (
       <table className={classes}>
@@ -106,6 +111,6 @@ module.exports = React.createClass({
         </tbody>
       </table>
 
-    );
+      );
   }
 });
